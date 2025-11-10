@@ -2,7 +2,7 @@
 
 ## ¿Qué hace este proyecto?
 Este proyecto crea una BD en memoria, la cual contiene dos tablas (users y phones).
-También expone 3 endpoints los cuales cumplen las funciones de, agregar usuarios,
+También expone 3 endpoints los cuales cumplen las funciones de agregar usuarios,
 buscar un usuario por correo y listar los usuarios registrados.
 ## ¿Qué necesito para ejecutarlo?
 Para ejecutar este proyecto es necesario contar con algún IDE el cuál soporte Java,
