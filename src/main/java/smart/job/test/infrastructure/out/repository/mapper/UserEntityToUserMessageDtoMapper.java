@@ -12,6 +12,7 @@ public class UserEntityToUserMessageDtoMapper implements Converter<UserEntity, U
     @Override
     public UserMessageDTO convert(UserEntity source) {
         ModelMapper mapper = new ModelMapper();
+        mapper.getConfiguration().setSkipNullEnabled(true);
         UserMessageDTO userMessageDTO = new UserMessageDTO();
         mapper.map(source, userMessageDTO);
         return userMessageDTO;
