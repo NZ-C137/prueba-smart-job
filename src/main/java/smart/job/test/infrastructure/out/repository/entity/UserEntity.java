@@ -1,9 +1,9 @@
 package smart.job.test.infrastructure.out.repository.entity;
 
 import jakarta.persistence.*;
-import org.hibernate.validator.constraints.UniqueElements;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -13,24 +13,22 @@ public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "id")
+    @Column(name = "id", updatable = false)
     private UUID id;
     @Column(name = "name", nullable = false)
     private String name;
-    @UniqueElements
-    @Column(name = "email", nullable = false)
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
     @Column(name = "password", nullable = false)
     private String password;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "phones")
-    private List<PhoneEntity> phones;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<PhoneEntity> phones = new ArrayList<>();
     @Column(name = "created")
     private Date created;
     @Column(name = "modified")
     private Date modified;
     @Column(name = "last_login")
     private Date lastLogin;
-    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "token")
     private UUID token;
     @Column(name = "is_active")
@@ -39,7 +37,7 @@ public class UserEntity {
     public UserEntity() {
     }
 
-    public UserEntity(UUID id, String name, String email, String password, List<PhoneEntity> phones, Date created, Date modified, Date lastLogin, UUID token, Boolean active) {
+    public UserEntity(UUID id, String name, String email, String password, List<PhoneEntity> phones, Date created, Date modified, Date lastLogin, UUID token, Boolean isActive) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -49,7 +47,7 @@ public class UserEntity {
         this.modified = modified;
         this.lastLogin = lastLogin;
         this.token = token;
-        this.isActive = active;
+        this.isActive = isActive;
     }
 
     @PrePersist
@@ -81,11 +79,11 @@ public class UserEntity {
         this.name = name;
     }
 
-    public @UniqueElements String getEmail() {
+    public String getEmail() {
         return email;
     }
 
-    public void setEmail(@UniqueElements String email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
@@ -102,6 +100,7 @@ public class UserEntity {
     }
 
     public void setPhones(List<PhoneEntity> phones) {
+        phones.forEach(phone->phone.setUser(this));
         this.phones = phones;
     }
 

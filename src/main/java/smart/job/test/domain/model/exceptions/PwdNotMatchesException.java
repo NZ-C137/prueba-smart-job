@@ -1,6 +1,6 @@
 package smart.job.test.domain.model.exceptions;
 
-public class PwdNotMatchesException extends Exception {
+public class PwdNotMatchesException extends RuntimeException {
 
     private final String mensaje;
 

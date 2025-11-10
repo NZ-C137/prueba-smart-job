@@ -21,13 +21,12 @@ public class UserDTO {
     @NotNull
     @NotBlank
     @JsonProperty("email")
-    @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")
+    @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", message = Constants.EMAIL_INVALID_TYPE_ERROR)
     private String email;
 
     @NotNull
     @NotBlank
     @JsonProperty("password")
-    @Pattern(regexp = "^[a-zA-Z0-9]$") /* Make it configurable */
     private String password;
 
     @JsonProperty("phones")

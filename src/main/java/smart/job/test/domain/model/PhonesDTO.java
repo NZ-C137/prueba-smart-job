@@ -9,44 +9,44 @@ public class PhonesDTO {
 
     @NotNull
     @JsonProperty("number")
-    private Long number;
+    private String number;
     @NotNull
     @JsonProperty("citycode")
-    private Integer cityCode;
+    private String cityCode;
     @NotNull
-    @JsonProperty("countrycode")
-    private Integer countryCode;
+    @JsonProperty("contrycode") //This should be "country" but the example says "contry"
+    private String countryCode;
 
     public PhonesDTO() {
     }
 
-    public PhonesDTO(Long number, Integer cityCode, Integer countryCode) {
+    public PhonesDTO(String number, String cityCode, String countryCode) {
         this.number = number;
         this.cityCode = cityCode;
         this.countryCode = countryCode;
     }
 
-    public Long getNumber() {
+    public String getNumber() {
         return number;
     }
 
-    public void setNumber(Long number) {
+    public void setNumber(String number) {
         this.number = number;
     }
 
-    public Integer getCityCode() {
+    public String getCityCode() {
         return cityCode;
     }
 
-    public void setCityCode(Integer cityCode) {
+    public void setCityCode(String cityCode) {
         this.cityCode = cityCode;
     }
 
-    public Integer getCountryCode() {
+    public String getCountryCode() {
         return countryCode;
     }
 
-    public void setCountryCode(Integer countryCode) {
+    public void setCountryCode(String countryCode) {
         this.countryCode = countryCode;
     }
 }
